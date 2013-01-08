@@ -1,5 +1,5 @@
 
-describe('View Tests', function () {
+describe('Todo List View Tests', function () {
 
 
     var view,
