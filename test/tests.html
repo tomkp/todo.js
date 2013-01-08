@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+
+    <title>Unit Tests</title>
+
+    <link rel="stylesheet" type="text/css" href="libs/jasmine.css">
+
+    <link rel="stylesheet" type="text/css" href="../src/app.css">
+
+
+    <script type="text/javascript" src="libs/jasmine.js"></script>
+    <script type="text/javascript" src="libs/jasmine-html.js"></script>
+
+    <!-- include source files here... -->
+
+    <script src="../src/app.js"></script>
+    <script src="../src/dom.js"></script>
+    <script src="../src/todo-list.js"></script>
+    <script src="../src/todo-list-view.js"></script>
+
+
+
+    <!-- include spec files here... -->
+
+
+    <script src="tests/dom-tests.js"></script>
+    <script src="tests/todo-list-tests.js"></script>
+    <script src="tests/todo-list-view-tests.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function() {
+            var jasmineEnv = jasmine.getEnv();
+            jasmineEnv.updateInterval = 1000;
+
+            var htmlReporter = new jasmine.HtmlReporter();
+
+            jasmineEnv.addReporter(htmlReporter);
+
+            jasmineEnv.specFilter = function(spec) {
+                return htmlReporter.specFilter(spec);
+            };
+
+            var currentWindowOnload = window.onload;
+
+            window.onload = function() {
+                if (currentWindowOnload) {
+                    currentWindowOnload();
+                }
+                execJasmine();
+            };
+
+            function execJasmine() {
+                jasmineEnv.execute();
+            }
+
+        })();
+    </script>
+
+
+<body>
+
+    <div id="fixture"></div>
+
+</body>

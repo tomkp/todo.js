@@ -1,0 +1,39 @@
+
+
+#todos {
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #fafafa;
+}
+
+#todos li {
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+#todos li:last-child {
+    border-bottom: none;
+}
+
+
+#todos button {
+    float: right;
+    vertical-align: text-top;
+}
+
+#todos input[type='text'] {
+    width: 100%;
+}
+
+#todos input[type='checkbox'] {
+    margin-right: 1em;
+    vertical-align: text-top;
+}
+
+#todos .completed {
+    color: #999;
+    background: #eee;
+    text-decoration: line-through;
+}

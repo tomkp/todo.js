@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Demo</title>
+<style>
+
+    html, body {
+        margin: 1em;
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+</style>
+
+
+<link rel="stylesheet" type="text/css" href="app.css">
+
+
+<body>
+
+
+
+<script src="app.js"></script>
+<script src="todo-list.js"></script>
+<script src="dom.js"></script>
+<script src="todo-list-view.js"></script>
+<script>
+
+
+    //......................................................................................................................
+    var todos = App.todoList();
+    todos.add('Wash car');
+    todos.add('Make bed');
+    todos.add('Eat lunch');
+
+    var $body = document.getElementsByTagName('body')[0];
+
+    var viewer = App.todoListView($body, todos).render();
+
+
+</script>
