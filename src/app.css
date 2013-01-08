@@ -6,6 +6,8 @@
     padding: 0;
     list-style: none;
     background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 #todos li {
@@ -37,3 +39,4 @@
     background: #eee;
     text-decoration: line-through;
 }
+
