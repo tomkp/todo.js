@@ -17,6 +17,13 @@ describe('Dom Tests', function () {
     });
 
 
+    it('should create a div with an inner span and some text', function () {
+        var arrayOfContent = [document.createElement('span'), 'Some text'];
+        var $element = dom.createElement('div', arrayOfContent);
+        expect($element.outerHTML).toEqual('<div><span></span>Some text</div>');
+    });
+
+
     it('should create a span with inner html and attributes', function () {
         var $element = dom.createElement('span', 'Some text', {class: 'xyz'});
         expect($element.outerHTML).toEqual('<span class="xyz">Some text</span>');

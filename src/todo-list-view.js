@@ -1,16 +1,16 @@
 //......................................................................................................................
 (function (app) {
 
-    app.todoListView = (function ($parent, list) {
+    app.todoListView = (function ($parent, list, dom) {
 
         var render,
             remove,
             keyup,
-            toggle,
-            dom = App.dom();
+            toggle
+            ;
 
         remove = function () {
-            var parentNode = this.parentNode;
+            var parentNode = findItemRoot(this);
             var id = parentNode.getAttribute('data-id');
             list.remove(id);
             render();
@@ -25,10 +25,19 @@
         };
 
         toggle = function () {
-            var parentNode = this.parentNode;
+            var parentNode = findItemRoot(this);
             parentNode.classList.toggle('completed');
             var id = parentNode.getAttribute('data-id');
             list.toggle(id);
+        };
+
+        var findItemRoot = function(node) {
+            if (node.getAttribute('data-id')) {
+                return node;
+            } else {
+                var parentNode = node.parentNode;
+                return findItemRoot(parentNode);
+            }
         };
 
         render = function () {
@@ -42,11 +51,11 @@
                     if (item.completed) {
                         attributes['class'] = 'completed';
                     }
-                    $li = dom.createElement('li', null, attributes, {});
                     var $checkbox = dom.createElement('input', null, {type: 'checkbox'}, {change: toggle});
                     $checkbox.checked = item.completed;
-                    $li.appendChild($checkbox);
-                    $li.appendChild(dom.createElement('span', item.value));
+                    $li = dom.createElement('li', null, attributes, {});
+                    var $label = dom.createElement('label', [$checkbox, item.value]);
+                    $li.appendChild($label);
                     $li.appendChild(dom.createElement('button', 'x', {}, {click: remove}));
                     $root.appendChild($li);
                 }
