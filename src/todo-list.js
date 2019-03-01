@@ -1,25 +1,23 @@
 
 //......................................................................................................................
-(function(app) {
+(app => {
 
-    app.todoList = (function () {
+    app.todoList = (() => {
 
-        var add,
+        let add,
             remove,
-            toggle,
-            items = {},
-            idCounter = 0,
+            toggle;
+        const items = {};
+        let idCounter = 0,
             uniqueId;
 
         // Generate a 'unique' id, by incrementing a counter
-        uniqueId = function () {
-            return ++idCounter + '';
-        };
+        uniqueId = () => ++idCounter + '';
 
         // Add a new item to the list
-        add = function (todo) {
+        add = todo => {
             // Generate an id
-            var id = uniqueId();
+            const id = uniqueId();
             // Store item using the id as it's key
             items[id] = {
                 value: todo,
@@ -37,7 +35,7 @@
         };
 
         // Toggle completed state of item
-        toggle = function(id) {
+        toggle = id => {
             items[id].completed = !items[id].completed;
         };
 

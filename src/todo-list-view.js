@@ -1,60 +1,60 @@
 //......................................................................................................................
-(function (app) {
+(app => {
 
-    app.todoListView = (function ($parent, list, dom) {
+    app.todoListView = (($parent, list, dom) => {
 
-        var render,
+        let render,
             remove,
             keyup,
             toggle
-            ;
+        ;
 
         remove = function () {
-            var parentNode = findItemRoot(this);
-            var id = parentNode.getAttribute('data-id');
+            const parentNode = findItemRoot(this);
+            const id = parentNode.getAttribute('data-id');
             list.remove(id);
             render();
         };
 
         keyup = function (e) {
             if (e.keyCode === 13) {
-                var value = this.value;
+                const value = this.value;
                 list.add(value);
                 render();
             }
         };
 
         toggle = function () {
-            var parentNode = findItemRoot(this);
+            const parentNode = findItemRoot(this);
             parentNode.classList.toggle('completed');
-            var id = parentNode.getAttribute('data-id');
+            const id = parentNode.getAttribute('data-id');
             list.toggle(id);
         };
 
-        var findItemRoot = function(node) {
+        findItemRoot = node => {
             if (node.getAttribute('data-id')) {
                 return node;
             } else {
-                var parentNode = node.parentNode;
+                const parentNode = node.parentNode;
                 return findItemRoot(parentNode);
             }
         };
 
         render = function () {
-            var $root = dom.createElement('ul', null, {id: 'todos'});
-            var items = list.items;
-            var $li;
-            for (var id in items) {
+            const $root = dom.createElement('ul', null, {id: 'todos'});
+            const items = list.items;
+            let $li;
+            for (let id in items) {
                 if (items.hasOwnProperty(id)) {
-                    var item = items[id];
-                    var attributes = {'data-id': id};
+                    const item = items[id];
+                    const attributes = {'data-id': id};
                     if (item.completed) {
                         attributes['class'] = 'completed';
                     }
-                    var $checkbox = dom.createElement('input', null, {type: 'checkbox'}, {change: toggle});
+                    const $checkbox = dom.createElement('input', null, {type: 'checkbox'}, {change: toggle});
                     $checkbox.checked = item.completed;
                     $li = dom.createElement('li', null, attributes, {});
-                    var $label = dom.createElement('label', [$checkbox, item.value]);
+                    const $label = dom.createElement('label', [$checkbox, item.value]);
                     $li.appendChild($label);
                     $li.appendChild(dom.createElement('button', 'x', {}, {click: remove}));
                     $root.appendChild($li);
