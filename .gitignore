@@ -1,2 +1,7 @@
-
-todo.iml
+.idea
+*.iml
+/target
+/built
+/dist
+node_modules
+.DS_Store
