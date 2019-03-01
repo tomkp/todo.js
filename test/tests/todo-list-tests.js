@@ -1,17 +1,17 @@
-describe('Todo List Tests', function () {
+describe('Todo List Tests', () => {
 
 
-    var todos;
+    let todos;
 
 
-    beforeEach(function () {
+    beforeEach(() => {
         todos = App.todoList();
     });
 
 
-    it('should be able to add an item', function () {
+    it('should be able to add an item', () => {
         todos.add('item');
-        var expected = {
+        const expected = {
             1: {
                 value: 'item', completed: false
             }
@@ -20,36 +20,36 @@ describe('Todo List Tests', function () {
     });
 
 
-    it('should return the id when you add an item', function () {
-        var id = todos.add('an item');
+    it('should return the id when you add an item', () => {
+        const id = todos.add('an item');
         expect(id).toEqual('1');
     });
 
 
-    it('should store the item by id', function () {
-        var id = todos.add('an item');
+    it('should store the item by id', () => {
+        const id = todos.add('an item');
         expect(todos.items[id].value).toEqual('an item');
     });
 
 
-    it('should be incomplete by default', function () {
-        var id = todos.add('an item');
+    it('should be incomplete by default', () => {
+        const id = todos.add('an item');
         expect(todos.items[id].completed).toBeFalsy();
     });
 
 
-    it('should be able to remove item by id', function () {
-        var id = todos.add('an item');
+    it('should be able to remove item by id', () => {
+        const id = todos.add('an item');
         todos.remove(id);
         expect(todos.items).toEqual({});
     });
 
 
-    it('should be able to add multiple items', function () {
+    it('should be able to add multiple items', () => {
         todos.add('item 1');
         todos.add('item 2');
         todos.add('item 3');
-        var expected = {
+        const expected = {
             1: {
                 value: 'item 1', completed: false
             },
@@ -64,10 +64,10 @@ describe('Todo List Tests', function () {
     });
 
 
-    it('should be able to toggle the completed state', function () {
-        var id = todos.add('an item');
+    it('should be able to toggle the completed state', () => {
+        const id = todos.add('an item');
         todos.toggle(id);
-        var expected = {
+        const expected = {
             1: {
                 value: 'an item', completed: true
             }

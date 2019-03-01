@@ -1,20 +1,20 @@
 
-describe('Todo List View Tests', function () {
+describe('Todo List View Tests', () => {
 
 
-    var view,
+    let view,
         $fixture,
         todoList;
 
 
-    beforeEach(function () {
+    beforeEach(() => {
         $fixture = document.getElementById('fixture');
         todoList = App.todoList();
         view = App.todoListView($fixture, todoList, App.dom());
     });
 
 
-    it('should create an empty todo list', function () {
+    it('should create an empty todo list', () => {
         view.render();
         expect($fixture.innerHTML).toEqual(
             '<ul id="todos">' +
@@ -23,7 +23,7 @@ describe('Todo List View Tests', function () {
     });
 
 
-    it('should create a todo list with a single item', function () {
+    it('should create a todo list with a single item', () => {
         todoList.add('an item');
         view.render();
         expect($fixture.innerHTML).toEqual(
@@ -34,7 +34,7 @@ describe('Todo List View Tests', function () {
     });
 
 
-    it('should create a todo list with mulitple items', function () {
+    it('should create a todo list with mulitple items', () => {
         todoList.add('item 1');
         todoList.add('item 2');
         todoList.add('item 3');
@@ -49,7 +49,7 @@ describe('Todo List View Tests', function () {
     });
 
 
-    it('should remove item when delete button clicked', function () {
+    it('should remove item when delete button clicked', () => {
         todoList.add('item 1');
         todoList.add('item 2');
         todoList.add('item 3');
@@ -65,12 +65,12 @@ describe('Todo List View Tests', function () {
     });
 
 
-    it('should toggle completed state when checkbox clicked', function () {
+    it('should toggle completed state when checkbox clicked', () => {
         todoList.add('item 1');
         todoList.add('item 2');
         todoList.add('item 3');
         view.render();
-        var $checkbox = document.querySelectorAll('li[data-id="2"] input[type="checkbox"]')[0];
+        const $checkbox = document.querySelectorAll('li[data-id="2"] input[type="checkbox"]')[0];
         $checkbox.click();
         expect($fixture.innerHTML).toEqual(
             '<ul id="todos">' +
@@ -83,7 +83,7 @@ describe('Todo List View Tests', function () {
     });
 
 
-    it('should toggle completed state when item text clicked', function () {
+    it('should toggle completed state when item text clicked', () => {
         todoList.add('item 1');
         todoList.add('item 2');
         todoList.add('item 3');
@@ -96,7 +96,7 @@ describe('Todo List View Tests', function () {
                 '<li data-id="3"><label><input type="checkbox">item 3</label><button>x</button></li>' +
                 '<li><input type="text"></li>' +
                 '</ul>');
-        var $checkbox = document.querySelectorAll('li[data-id="2"] input[type="checkbox"]')[0];
+        const $checkbox = document.querySelectorAll('li[data-id="2"] input[type="checkbox"]')[0];
         expect($checkbox.checked).toBeTruthy();
     });
 
